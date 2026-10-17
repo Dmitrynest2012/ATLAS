@@ -34,7 +34,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #4dc5bb; outline-offs
   position: relative; z-index: 30; width: 100%; height: var(--header-height);
   display: flex; align-items: center; justify-content: space-between;
   background: var(--white); border-bottom: 1px solid var(--border);
-  padding: 0 26px 0 18px;
+  padding: 0 14px 0 18px;
 }
 .topbar__left, .topbar__right { display: flex; align-items: center; height: 100%; }
 .topbar__left { gap: 16px; }
@@ -119,7 +119,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #4dc5bb; outline-offs
 
 @media (max-width: 860px) {
   :root { --header-height: 68px; }
-  .topbar { padding: 0 14px; }
+  .topbar { padding: 0 10px 0 14px; }
   .sidebar { position: fixed; z-index: 20; top: var(--header-height); bottom: 0; left: 0; width: var(--sidebar-wide); transform: translateX(-101%); box-shadow: 20px 0 40px #2030440a; transition: transform var(--motion); }
   .sidebar__inner { min-height: 0; height: 100%; }
   .app-shell.is-mobile-open .sidebar { transform: translateX(0); }
