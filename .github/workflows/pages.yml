@@ -1,0 +1,46 @@
+name: ATLAS / Проверка и публикация
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: atlas-pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получить исходники
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Установить окружение
+        run: npm ci --ignore-scripts
+      - name: Проверить проект
+        run: npm run check
+      - name: Собрать сайт
+        run: npm run build
+      - name: Настроить GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Загрузить сборку Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Опубликовать сайт
+        id: deployment
+        uses: actions/deploy-pages@v4

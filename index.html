@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f9fc" />
+    <meta name="description" content="ATLAS — пространство заботы о здоровье сотрудников." />
+    <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <title>ATLAS — Здоровье сотрудников</title>
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="icon-button menu-toggle" id="sidebarToggle" type="button" aria-label="Свернуть боковую панель" aria-controls="sidebar" aria-expanded="true" title="Свернуть или развернуть меню">
+            <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 6.5h16M4 12h16M4 17.5h16" />
+            </svg>
+          </button>
+          <div class="topbar__divider" aria-hidden="true"></div>
+          <a class="brand" href="#home" aria-label="ATLAS — главная">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M6 21h8l4-10 6 18 4-8h6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="brand__name">ATLAS<span class="brand__dot">.</span></span>
+            <span class="brand__tag">HEALTH</span>
+          </a>
+        </div>
+        <div class="topbar__right">
+          <div class="user-menu" id="userMenu">
+            <button class="user-menu__trigger" type="button" id="userMenuTrigger" aria-label="Меню пользователя: Гость" aria-expanded="false" aria-controls="userMenuPopup" aria-haspopup="dialog">
+              <span class="user-menu__avatar" id="userInitial" aria-hidden="true">Г</span>
+              <span class="user-menu__name" id="userName">Гость</span>
+              <svg class="user-menu__chevron" viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 6 4.5 4 4.5-4" /></svg>
+            </button>
+            <div class="user-menu__popup" id="userMenuPopup" role="dialog" aria-label="Меню пользователя" hidden></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar" id="sidebar" aria-label="Боковая навигация">
+          <div class="sidebar__inner">
+            <div class="sidebar__top">
+              <p class="sidebar__label">НАВИГАЦИЯ</p>
+              <nav class="nav-list" aria-label="Разделы ATLAS">
+                <button class="nav-item is-active" type="button" data-page="home" aria-current="page" title="Главная">
+                  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+                  <span class="nav-item__text">Главная</span>
+                </button>
+                <button class="nav-item" type="button" data-page="health" title="Моё здоровье">
+                  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 5.6a5.5 5.5 0 0 0-7.8 0L12 6.4l-.8-.8a5.5 5.5 0 0 0-7.8 7.8L12 22l8.6-8.6a5.5 5.5 0 0 0 0-7.8Z"/><path d="M4.5 12h4l1.6-3 3.1 6 1.5-3H20"/></svg>
+                  <span class="nav-item__text">Моё здоровье</span>
+                </button>
+                <button class="nav-item" type="button" data-page="metrics" title="Показатели">
+                  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V13m5 7V7m5 13v-9m5 9V4M2 20h20"/></svg>
+                  <span class="nav-item__text">Показатели</span>
+                </button>
+                <button class="nav-item" type="button" data-page="resources" title="Материалы">
+                  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22V4.5Zm0 15A2.5 2.5 0 0 1 6.5 17H20M8 7h8M8 11h6"/></svg>
+                  <span class="nav-item__text">Материалы</span>
+                </button>
+              </nav>
+            </div>
+            <div class="sidebar__bottom">
+              <span class="sidebar__bottom-line" aria-hidden="true"></span>
+              <button class="nav-item" type="button" data-page="settings" title="Настройки">
+                <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M19.5 12a7.5 7.5 0 0 0-.1-1.2l2-1.5-2-3.5-2.3 1A7.7 7.7 0 0 0 15 5.6L14.7 3h-4l-.3 2.6a7.7 7.7 0 0 0-2.1 1.2l-2.3-1-2 3.5 2 1.5A7.5 7.5 0 0 0 6 13.2l-2 1.5 2 3.5 2.3-1a7.7 7.7 0 0 0 2.1 1.2l.3 2.6h4l.3-2.6a7.7 7.7 0 0 0 2.1-1.2l2.3 1 2-3.5-2-1.5c.1-.4.1-.8.1-1.2Z"/></svg>
+                <span class="nav-item__text">Настройки</span>
+              </button>
+              <div class="sidebar__version"><span class="sidebar__version-dot"></span><span class="sidebar__version-text">ATLAS / v0.1.0</span></div>
+            </div>
+          </div>
+        </aside>
+        <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" aria-label="Закрыть боковое меню" tabindex="-1" hidden></button>
+
+        <main class="content" id="mainContent">
+          <div class="content__inner">
+            <div class="eyebrow"><span class="eyebrow__line"></span> ПЛАТФОРМА ЗДОРОВЬЯ СОТРУДНИКОВ</div>
+            <div class="heading-row">
+              <div>
+                <h1 class="page-title" id="pageTitle">Главная</h1>
+                <p class="page-subtitle" id="pageSubtitle">Ваше персональное пространство в ATLAS.</p>
+              </div>
+              <span class="stage-pill"><span class="stage-pill__dot"></span> Версия 0.1.0</span>
+            </div>
+            <section class="welcome-card" aria-labelledby="welcomeTitle">
+              <div class="welcome-card__content">
+                <span class="welcome-card__overline">ATLAS / РАБОЧЕЕ ПРОСТРАНСТВО</span>
+                <h2 id="welcomeTitle">Здоровье начинается с внимания к себе.</h2>
+                <p id="welcomeDescription">Основа портала готова. Здесь появятся инструменты, сервисы и полезные материалы для сотрудников.</p>
+                <span class="welcome-card__status"><span class="welcome-card__status-dot"></span> Интерфейс готов к расширению</span>
+              </div>
+              <div class="welcome-card__graphic" aria-hidden="true"><span class="orbit orbit--one"></span><span class="orbit orbit--two"></span><span class="pulse-circle"><svg viewBox="0 0 80 80" fill="none"><path d="M7 42h18l10-23 15 42 11-19h12" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            </section>
+            <div class="next-section">
+              <h3>Рабочая область</h3>
+              <p>Содержимое разделов будет добавляться по мере разработки. Демонстрационных медицинских данных здесь нет.</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
