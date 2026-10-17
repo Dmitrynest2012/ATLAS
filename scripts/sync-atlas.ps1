@@ -12,6 +12,9 @@ $env:GIT_TERMINAL_PROMPT = '0'
 
 function Write-AtlasLog([string]$message) {
   $line = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | $message"
+  if ((Test-Path $logFile) -and (Get-Item $logFile).Length -gt 2MB) {
+    Move-Item -Path $logFile -Destination "$logFile.old" -Force
+  }
   Add-Content -Path $logFile -Value $line -Encoding UTF8
   Write-Output $line
 }
@@ -67,6 +70,7 @@ try {
   $local = Invoke-AtlasGit -gitArgs @('rev-parse', 'HEAD')
   $remote = Invoke-AtlasGit -gitArgs @('rev-parse', 'refs/remotes/origin/main')
   if ($local -eq $remote) {
+    Write-AtlasLog 'Проверка выполнена: новых обновлений нет.'
     Install-AtlasDependencies
     exit 0
   }
